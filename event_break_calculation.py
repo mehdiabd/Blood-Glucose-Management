@@ -41,7 +41,7 @@ list_of_t = []
 
 def main(no_of_run) -> float:
     T_be: float = calculate_T_be()
-    list_of_t.append(T_be) if T_be >= 7200 else None
+    list_of_t.append(T_be) if T_be > 7200 else None
     print("************************************************")
     print(f'the End of Run Number {no_of_run + 1}')
     print(f'=> Final Event Break: {T_be}')
@@ -53,3 +53,5 @@ number_of_runs = int(input("Please enter the number of runs you need: "))
 for i in range(number_of_runs):
     main(i)
 print(list_of_t)
+print(f'Number of transmissions lasted more than 7200 secs: {len(list_of_t)} '
+      f'(out of {number_of_runs})')
