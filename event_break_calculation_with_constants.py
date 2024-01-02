@@ -7,6 +7,8 @@ Returns:
 """
 
 import numpy as np
+import matplotlib.pyplot as plt
+# import seaborn as sns
 
 # declaring powers as variables (mw)
 P_on: float = 0.30
@@ -21,6 +23,8 @@ T_on2off: np.array = np.arange(15, 61, .5)
 
 
 def by_P_off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on):
+    T_be_vals = []
+
     for i in P_off:
         # power and time consumed in each transmission
         T_tr = T_on2off + T_off2on
@@ -30,6 +34,8 @@ def by_P_off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on)
             T_tr + T_tr * ((P_tr - P_on) / (P_on - i)) if P_tr > P_on
             else T_tr
         )
+
+        T_be_vals.append(T_be)
 
         # print everything
         print(f"* POWER consumed when OFF: {i} mw")
@@ -42,10 +48,18 @@ def by_P_off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on)
         print(f'=> Final Event Break: {T_be}')
         print("************************************************")
 
-    return T_be
+    # Plotting
+    plt.plot(T_be_vals, P_off, label="P_off")
+    plt.xlabel("T_be (s)")
+    plt.ylabel("P_off (mw)")
+    plt.title("T_be vs P_off")
+    plt.legend()
+    plt.show()
 
 
 def by_P_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on):
+    T_be_vals = []
+    
     for i in P_on2off:
         # power and time consumed in each transmission
         T_tr = T_on2off + T_off2on
@@ -54,6 +68,8 @@ def by_P_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
         T_be: float = (
             T_tr + T_tr * ((P_tr - P_on) / (P_on - P_off)) if P_tr > P_on else T_tr
         )
+
+        T_be_vals.append(T_be)
 
         # print everything
         print(f"* POWER consumed when OFF: {P_off} mw")
@@ -66,10 +82,18 @@ def by_P_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
         print(f'=> Final Event Break: {T_be}')
         print("************************************************")
 
-    return T_be
+    # Plotting
+    plt.plot(T_be_vals, P_on2off, label="P_on2off")
+    plt.xlabel("T_be (s)")
+    plt.ylabel("P_on2off (mw)")
+    plt.title("T_be vs P_on2off")
+    plt.legend()
+    plt.show()
 
 
 def by_P_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on):
+    T_be_vals = []
+    
     for i in P_off2on:
         # power and time consumed in each transmission
         T_tr = T_on2off + T_off2on
@@ -79,6 +103,8 @@ def by_P_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
             T_tr + T_tr * ((P_tr - P_on) / (P_on - P_off)) if P_tr > P_on
             else T_tr
         )
+
+        T_be_vals.append(T_be)    
 
         # print everything
         print(f"* POWER consumed when OFF: {P_off} mw")
@@ -91,10 +117,18 @@ def by_P_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
         print(f'=> Final Event Break: {T_be}')
         print("************************************************")
 
-    return T_be
+    # Plotting
+    plt.plot(T_be_vals, P_off2on, label="P_off2on")
+    plt.xlabel("T_be (s)")
+    plt.ylabel("P_off2on (mw)")
+    plt.title("T_be vs P_off2on")
+    plt.legend()
+    plt.show()
 
 
 def by_T_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on):
+    T_be_vals = []
+    
     for i in T_on2off:
         # power and time consumed in each transmission
         T_tr = i + T_off2on
@@ -104,6 +138,8 @@ def by_T_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
             T_tr + T_tr * ((P_tr - P_on) / (P_on - P_off)) if P_tr > P_on
             else T_tr
         )
+
+        T_be_vals.append(T_be)
 
         # print everything
         print(f"* POWER consumed when OFF: {P_off} mw")
@@ -116,10 +152,17 @@ def by_T_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
         print(f'=> Final Event Break: {T_be}')
         print("************************************************")
 
-    return T_be
-
+    # Plotting
+    plt.plot(T_be_vals, T_on2off, label="T_on2off")
+    plt.xlabel("T_be (s)")
+    plt.ylabel("T_on2off (s)")
+    plt.title("T_be vs T_on2off")
+    plt.legend()
+    plt.show()
 
 def by_T_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2on):
+    T_be_vals = []
+    
     for i in T_off2on:
         # power and time consumed in each transmission
         T_tr = T_on2off + i
@@ -129,6 +172,8 @@ def by_T_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
             T_tr + T_tr * ((P_tr - P_on) / (P_on - P_off)) if P_tr > P_on
             else T_tr
         )
+
+        T_be_vals.append(T_be)
 
         # print everything
         print(f"* POWER consumed when OFF: {P_off} mw")
@@ -141,8 +186,13 @@ def by_T_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off, T_off2
         print(f'=> Final Event Break: {T_be}')
         print("************************************************")
 
-    return T_be
-
+    # Plotting
+    plt.plot(T_be_vals, T_off2on, label="T_off2on")
+    plt.xlabel("T_be (s)")
+    plt.ylabel("T_off2on (s)")
+    plt.title("T_be vs T_off2on")
+    plt.legend()
+    plt.show()
 
 def main():
     T_be_P_off = by_P_off_calculate_T_be(P_on, P_off, P_on2off[0], P_off2on[0],
