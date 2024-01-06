@@ -52,10 +52,10 @@ def by_P_off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off,
         print("************************************************")
 
     # Plotting
-    plt.plot(T_be_vals, P_off, label="P_off")
-    plt.xlabel("T_be (s)")
-    plt.ylabel("P_off (mw)")
-    plt.title("T_be vs P_off")
+    plt.plot(P_off, T_be_vals, label="P_off")
+    plt.xlabel("P_off (mw)")
+    plt.ylabel("T_be (s)")
+    plt.title("P_off vs. T_be")
     plt.legend()
     plt.show()
 
@@ -88,10 +88,10 @@ def by_P_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off,
         print("************************************************")
 
     # Plotting
-    plt.plot(T_be_vals, P_on2off, label="P_on2off")
-    plt.xlabel("T_be (s)")
-    plt.ylabel("P_on2off (mw)")
-    plt.title("T_be vs P_on2off")
+    plt.plot(P_on2off, T_be_vals, label="P_on2off")
+    plt.xlabel("P_on2off (mw)")
+    plt.ylabel("T_be (s)")
+    plt.title("P_on2off vs. T_be")
     plt.legend()
     plt.show()
 
@@ -110,7 +110,7 @@ def by_P_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off,
             else T_tr
         )
 
-        T_be_vals.append(T_be)    
+        T_be_vals.append(T_be)
 
         # print everything
         print(f"* POWER consumed when OFF: {P_off} mw")
@@ -124,10 +124,10 @@ def by_P_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off,
         print("************************************************")
 
     # Plotting
-    plt.plot(T_be_vals, P_off2on, label="P_off2on")
-    plt.xlabel("T_be (s)")
-    plt.ylabel("P_off2on (mw)")
-    plt.title("T_be vs P_off2on")
+    plt.plot(P_off2on, T_be_vals, label="P_off2on")
+    plt.xlabel("P_off2on (mw)")
+    plt.ylabel("T_be (s)")
+    plt.title("P_off2on vs. T_be")
     plt.legend()
     plt.show()
 
@@ -160,10 +160,10 @@ def by_T_on2off_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off,
         print("************************************************")
 
     # Plotting
-    plt.plot(T_be_vals, T_on2off, label="T_on2off")
-    plt.xlabel("T_be (s)")
-    plt.ylabel("T_on2off (s)")
-    plt.title("T_be vs T_on2off")
+    plt.plot(T_on2off, T_be_vals, label="T_on2off")
+    plt.xlabel("T_on2off (s)")
+    plt.ylabel("T_be (s)")
+    plt.title("T_on2off vs. T_be")
     plt.legend()
     plt.show()
 
@@ -196,10 +196,10 @@ def by_T_off2on_calculate_T_be(P_on, P_off, P_on2off, P_off2on, T_on2off,
         print("************************************************")
 
     # Plotting
-    plt.plot(T_be_vals, T_off2on, label="T_off2on")
-    plt.xlabel("T_be (s)")
-    plt.ylabel("T_off2on (s)")
-    plt.title("T_be vs T_off2on")
+    plt.plot(T_off2on, T_be_vals, label="T_off2on")
+    plt.xlabel("T_off2on (s)")
+    plt.ylabel("T_be (s)")
+    plt.title("T_off2on vs. T_be")
     plt.legend()
     plt.show()
 
