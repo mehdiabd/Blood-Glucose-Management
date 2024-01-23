@@ -3,7 +3,7 @@ import random as rnd
 
 def calculate_T_be() -> float:
     # declaring steps
-    step_off = 0.0005  # mw
+    # step_off = 0.0005  # mw
     step_P_tr = 0.05  # mw
     step_T_tr = 0.5  # s
 
@@ -37,11 +37,15 @@ def calculate_T_be() -> float:
 
     return T_be
 
-list_of_t = []
+
+more_than_2h = []
+less_than_4h = []
+
 
 def main(no_of_run) -> float:
     T_be: float = calculate_T_be()
-    list_of_t.append(T_be) if T_be > 7200 else None
+    less_than_4h.append(T_be) if T_be < 14400 else None
+    more_than_2h.append(T_be) if T_be > 7200 else None
     print("************************************************")
     print(f'the End of Run Number {no_of_run + 1}')
     print(f'=> Final Event Break: {T_be}')
@@ -52,6 +56,10 @@ number_of_runs = int(input("Please enter the number of runs you need: "))
 
 for i in range(number_of_runs):
     main(i)
-print(list_of_t)
-print(f'Number of transmissions lasted more than 7200 secs: {len(list_of_t)} '
-      f'(out of {number_of_runs})')
+print('Runtiems Less than 4 Hours: ', less_than_4h)
+print(f'Number of transmissions lasted Less than 4 Hours: {len(less_than_4h)}'
+      f' (out of {number_of_runs}) -> '
+      f'{len(less_than_4h) / number_of_runs * 100}%')
+print(f'Number of transmissions lasted More than 2 Hours: {len(more_than_2h)}'
+      f' (out of {number_of_runs}) -> '
+      f'{len(more_than_2h) / number_of_runs * 100}%')
