@@ -30,9 +30,6 @@ if __name__ == '__main__':
     std = 50
 
     sim_cnt = 1000000
-    # sim_cnt = 288
-    # sim_cnt = 1440
-
     count_idle = 0
     count_high = 0
     count_low = 0
@@ -55,4 +52,5 @@ if __name__ == '__main__':
     # Equal aspect ratio ensures that pie is drawn as a circle.
     plt.axis('equal')
     plt.title('BGL Pie Chart')
+    plt.legend()
     plt.show()
