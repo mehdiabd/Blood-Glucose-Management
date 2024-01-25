@@ -69,13 +69,22 @@ for i in range(number_of_runs):
     main(i)
 print('Runtiems Less than 4 Hours: ', less_than_4h)
 
+pct_less_than_4h = (len(less_than_4h) / number_of_runs) * 100
 print(f'Number of transmissions lasted Less than 4 Hours: {len(less_than_4h)}'
       f' (out of {number_of_runs}) -> '
-      f'{len(less_than_4h) / number_of_runs * 100}%')
+      f'{pct_less_than_4h}%')
 
 print(f'Number of transmissions lasted More than 2 Hours: {len(more_than_2h)}'
       f' (out of {number_of_runs}) -> '
       f'{len(more_than_2h) / number_of_runs * 100}%')
+
+avg_T_be = sum(T_be_vals) / len(T_be_vals)
+E_save = [0.3 * (avg_T_be - i) * .0034 for i in range(len(T_be_vals))]
+P_save = [e / avg_T_be for e in E_save]
+print('######################################################################')
+print(f'The Average of T_be Values Lasted Less than 4 Hours is: {avg_T_be}(s)')
+print(f'The Average of Saved Energy is: {sum(E_save) / len(E_save)}(mJ)')
+print(f'The Average of Saved Power is: {sum(P_save) / len(P_save)}(mW)')
 
 # Create a 3D scatter plot
 fig = plt.figure()
